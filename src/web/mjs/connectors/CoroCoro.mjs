@@ -19,9 +19,11 @@ export default class CoroCoro extends Connector {
      */
     async _getMangaFromURI(uri) {
         const id = uri.pathname.split('/')[2];
-        /** @type {HTMLHeadingElement[]} */
-        const data = await this.fetchDOM(uri, 'main > div > div > section > div.grid > h1.font-bold');
-        const title = data[0].innerText.trim();
+        const request = new Request(uri, this.requestOptions);
+        /** @type {string} */
+        const title = await Engine.Request.fetchUI(request, "document.getElementsByTagName('h1')[0].innerText.trim()");
+        // const data = await this.fetchDOM(uri, 'main > div > div > section > div.grid > h1.font-bold');
+        // const title = data[0].innerText.trim();
         return new Manga(this, id, title);
     }
 
