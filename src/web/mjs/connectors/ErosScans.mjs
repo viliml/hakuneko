@@ -1,18 +1,19 @@
-import WordPressMadara from './templates/WordPressMadara.mjs';
+import WordPressMangastream from './templates/WordPressMangastream.mjs';
 
-export default class Hiperdex extends WordPressMadara {
+export default class ErosScan extends WordPressMangastream {
 
     constructor() {
         super();
-        super.id = 'hiperdex';
-        super.label = 'Hiperdex';
-        this.tags = [ 'hentai', 'webtoon', 'english' ];
+        super.id = 'erosscans';
+        super.label = 'Eros Scan';
+        this.tags = ['webtoon', 'english'];
+        this.path = '/manga/list-mode/';
         this.config = {
             url: {
                 label: 'URL',
                 description: 'This website changes their URL regularly.\nThis is the last known URL which can also be manually set by the user.',
                 input: 'text',
-                value: 'https://hiperdex.com'
+                value: 'https://doomcomic.xyz'
             }
         };
     }
@@ -27,9 +28,4 @@ export default class Hiperdex extends WordPressMadara {
             Engine.Settings.save();
         }
     }
-
-    canHandleURI(uri) {
-        return this.url.includes(uri.hostname);
-    }
-
 }
